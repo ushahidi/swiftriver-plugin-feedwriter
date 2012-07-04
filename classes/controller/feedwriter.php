@@ -93,7 +93,7 @@ class Controller_Feedwriter extends Controller_Swiftriver {
 		$feed->set_title($account.' / '.$name);
 		$feed->set_link(URL::site($this->bucket->get_base_url(), TRUE));
 		$feed->set_author('SwiftRiver / '.$account, URL::site($account, TRUE));
-		$feed->set_description('Drops from '.$this->bucket->bucket_name.
+		$feed->set_description('Drops from '.$this->bucket->bucket_name
 		                      .' on Swiftriver');
 		$feed->set_copyright(Kohana::$config->load('feedwriter')->get('copyright'));
 
