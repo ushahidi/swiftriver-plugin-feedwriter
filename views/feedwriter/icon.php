@@ -14,7 +14,7 @@
 <script type="text/template" id="feed-icon-template">
 <span class="rss-feed nodisplay">
 	<a href="<?php echo $feed_url; ?>" target="_blank">
-		<?php echo Html::image("themes/default/media/img/channel-rss.gif"); ?>
+		<?php echo HTML::image("themes/default/media/img/channel-rss.gif"); ?>
 	</a>
 </span>
 </script>

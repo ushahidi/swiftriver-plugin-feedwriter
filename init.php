@@ -16,7 +16,7 @@ class Feedwriter_Init
 		$url = URL::site(Route::get('feeds')->uri(array(
 			'account' => Request::current()->param('account'),
 			'name'	  => Request::current()->param('name'),
-			'directory' => Request::current()->controller(),
+			'directory' => strtolower(Request::current()->controller()),
 			'format'  => $format
 		)), true);
 		
@@ -33,12 +33,12 @@ class Feedwriter_Init
 		
 		if (strlen(Request::current()->param('name')) > 0)
 		{
-			$account = ORM::factory('account', 
+			$account = ORM::factory('Account', 
 				array('account_path' => Request::current()->param('account')));
 				
-			if (Request::current()->controller() == 'bucket')
+			if (Request::current()->controller() == 'Bucket')
 			{
-				$bucket = ORM::factory('bucket')
+				$bucket = ORM::factory('Bucket')
 					->where('bucket_name_url', '=', Request::current()->param('name'))
 					->where('account_id', '=', $account->id)
 					->find();
@@ -50,7 +50,7 @@ class Feedwriter_Init
 			}
 			else
 			{
-				$river = ORM::factory('river')
+				$river = ORM::factory('River')
 					->where('river_name_url', '=', Request::current()->param('name'))
 					->where('account_id', '=', $account->id)
 					->find();
@@ -67,8 +67,8 @@ class Feedwriter_Init
 	
 	public static function add_meta()
 	{
-		if ((Request::current()->controller() == 'bucket' OR
-			Request::current()->controller() == 'river') AND
+		if ((Request::current()->controller() == 'Bucket' OR
+			Request::current()->controller() == 'River') AND
 			strlen(Request::current()->param('name')) > 0)
 		{
 			echo '<link rel="alternate" title="RSS" type="application/rss+xml" href="'.self::feed_url('rss').
@@ -79,8 +79,8 @@ class Feedwriter_Init
 
 	public static function add_icon()
 	{
-		if ((Request::current()->controller() == 'bucket' OR
-			Request::current()->controller() == 'river') AND
+		if ((Request::current()->controller() == 'Bucket' OR
+			Request::current()->controller() == 'River') AND
 			strlen(Request::current()->param('name')) > 0)
 		{
 			$icon = View::factory("feedwriter/icon");
