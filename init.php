@@ -36,7 +36,7 @@ class Feedwriter_Init
 			$account = ORM::factory('Account', 
 				array('account_path' => Request::current()->param('account')));
 				
-			if (Request::current()->controller() == 'Bucket')
+			if (strtolower(Request::current()->controller()) == 'bucket')
 			{
 				$bucket = ORM::factory('Bucket')
 					->where('bucket_name_url', '=', Request::current()->param('name'))
@@ -67,8 +67,8 @@ class Feedwriter_Init
 	
 	public static function add_meta()
 	{
-		if ((Request::current()->controller() == 'Bucket' OR
-			Request::current()->controller() == 'River') AND
+		if ((strtolower(Request::current()->controller()) == 'bucket' OR
+			strtolower(Request::current()->controller()) == 'river') AND
 			strlen(Request::current()->param('name')) > 0)
 		{
 			echo '<link rel="alternate" title="RSS" type="application/rss+xml" href="'.self::feed_url('rss').
@@ -79,8 +79,8 @@ class Feedwriter_Init
 
 	public static function add_icon()
 	{
-		if ((Request::current()->controller() == 'Bucket' OR
-			Request::current()->controller() == 'River') AND
+		if ((strtolower(Request::current()->controller()) == 'bucket' OR
+			strtolower(Request::current()->controller()) == 'river') AND
 			strlen(Request::current()->param('name')) > 0)
 		{
 			$icon = View::factory("feedwriter/icon");
