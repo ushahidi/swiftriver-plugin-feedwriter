@@ -34,7 +34,7 @@ class Controller_Bucket_Feedwriter extends Controller_Bucket {
 		$feed->setLink(URL::site($this->bucket->get_base_url(), TRUE));
 		$feed->setDescription('Drops from the '.$this->bucket->bucket_name
 				                      .' bucket.');
-		foreach ($droplets_array['droplets'] as $drop)
+		foreach ($droplets_array as $drop)
 		{
 			$newItem = $feed->createNewItem();
 			$newItem->setTitle($drop['droplet_title']);

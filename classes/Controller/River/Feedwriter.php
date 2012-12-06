@@ -35,7 +35,7 @@ class Controller_River_Feedwriter extends Controller_River {
 		$feed->setLink(URL::site($this->river->get_base_url(), TRUE));
 		$feed->setDescription('Drops from the '.$this->river->river_name
 				                      .' river.');
-		foreach ($droplets_array['droplets'] as $drop)
+		foreach ($droplets_array as $drop)
 		{
 			$newItem = $feed->createNewItem();
 			$newItem->setTitle($drop['droplet_title']);
